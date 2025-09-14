@@ -1,0 +1,23 @@
+{
+    "name": "DeutschMeister",
+    "short_name": "DeutschMeister",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1e1e3f",
+    "theme_color": "#1e1e3f",
+    "description": "Your personal German learning companion.",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
