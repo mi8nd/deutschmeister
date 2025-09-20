@@ -1,6 +1,6 @@
 <div align="center">
 DeutschMeister - German Learning Companion
-![alt text](https://img.shields.io/badge/Live_Demo-DeutschMeister-blue?style=for-the-badge&logo=netlify)
+![alt text](https://i.ibb.co/tM17qGj6/icon.png)
 
 ![alt text](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
 A modern, responsive PWA for learning German, featuring structured video courses (A1-C1), progress tracking, interactive quizzes, and a bilingual interface, all powered by Firebase and the YouTube API.
