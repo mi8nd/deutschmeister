@@ -684,8 +684,8 @@ const renderContinueWatching = () => {
         card.className = 'continue-watching-card';
         card.dataset.videoId = video.videoId;
         card.dataset.level = video.level;
-        const totalDuration = 30 * 60;
-        const progressPercent = Math.min(100, (video.timestamp / totalDuration) * 100);
+        const totalDuration = video.duration || 1800; // Fallback to 30 mins if duration not available
+        const progressPercent = totalDuration > 0 ? Math.min(100, (video.timestamp / totalDuration) * 100) : 0;
         card.innerHTML = `
             <img src="${video.thumbnail}" alt="${video.title}" class="continue-watching-thumbnail">
             <div class="continue-watching-details">
