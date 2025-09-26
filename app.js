@@ -220,7 +220,8 @@ const handleNavigation = (hash, updateHistory = true) => {
     const currentNormalizedHash = normalizeHash(window.location.hash);
     const targetNormalizedHash = normalizeHash(hash);
 
-    const [viewId, params] = (hash.substring(1) || 'home').split('?');
+    const defaultView = currentUser ? 'home' : 'auth';
+    const [viewId, params] = (hash.substring(1) || defaultView).split('?');
     const urlParams = new URLSearchParams(params);
     const mainContent = document.querySelector('.main-content');
 
@@ -231,8 +232,8 @@ const handleNavigation = (hash, updateHistory = true) => {
         elements.passwordResetView?.classList.add('hidden');
         elements.authContainer?.classList.remove('hidden');
         document.body.classList.remove('public-view-mode');
-        if (updateHistory && window.location.hash !== '') {
-            history.pushState({ hash: '' }, '', '/');
+        if (window.location.hash && window.location.hash !== '#') {
+            history.replaceState(null, '', window.location.pathname);
         }
         return;
     }
@@ -1123,17 +1124,12 @@ const setupEventListeners = () => {
         }
 
         if (target.closest('.back-to-previous-btn')) {
-            const currentViewId = (window.location.hash.substring(1) || 'home').split('?')[0];
-            const publicStaticViews = ['terms', 'privacy', 'faq', 'accessibility'];
-
-            if (!document.referrer || document.referrer === window.location.href) {
-                if (currentUser) {
-                    showView('home');
-                }
-                // If not logged in and no history, do nothing to avoid leaving the public page.
-            } else if (currentUser && publicStaticViews.includes(currentViewId)) {
+            if (currentUser) {
+                // Per user request, the back button on these pages returns a logged-in user to the home view.
                 showView('home');
             } else {
+                // For a logged-out user, it functions as a standard browser back button,
+                // returning to the previous page in history (e.g., the auth screen).
                 history.back();
             }
             return;
@@ -1336,7 +1332,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 updateUIForGuest();
             }
-            handleNavigation(window.location.hash || '#home', false);
+            handleNavigation(window.location.hash || '#', false);
         });
     } catch (error) {
         console.error("A critical error occurred during app initialization:", error);
