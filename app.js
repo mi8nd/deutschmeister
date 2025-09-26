@@ -1125,12 +1125,13 @@ const setupEventListeners = () => {
 
         if (target.closest('.back-to-previous-btn')) {
             if (currentUser) {
-                // Per user request, the back button on these pages returns a logged-in user to the home view.
+                // For a logged-in user, always go back to the main dashboard.
                 showView('home');
             } else {
-                // For a logged-out user, it functions as a standard browser back button,
-                // returning to the previous page in history (e.g., the auth screen).
-                history.back();
+                // For a logged-out user, programmatically navigate to the default view,
+                // which our router will correctly interpret as the auth screen.
+                // This is more reliable than history.back() when users land directly on a page.
+                showView('home');
             }
             return;
         }
