@@ -1,6 +1,6 @@
 // A robust service worker with strategic caching for optimal performance and offline reliability.
 
-const CACHE_VERSION = 'v4'; // Increment this version number to trigger an update for all users.
+const CACHE_VERSION = 'v5'; // Increment this version number to trigger an update for all users.
 const STATIC_CACHE_NAME = `deutschmeister-static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE_NAME = `deutschmeister-dynamic-${CACHE_VERSION}`;
 
